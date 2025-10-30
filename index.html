@@ -46,6 +46,31 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Modal Overlay Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
@@ -73,7 +98,7 @@
                 オンライン<ruby>日本語<rt class="text-xs font-normal">にほんご</rt></ruby><ruby>会話力強化<rt class="text-xs font-normal">かいわりょくきょうか</rt></ruby>プログラム
             </h2>
             <p class="mt-6 text-lg md:text-2xl text-gray-700 font-semibold">
-                <ruby>日本人<rt class="text-xs font-normal">にほんじん</rt></ruby>との<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>に<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>を！<br class="sm:hidden">「<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>す<ruby>度胸<rt class="text-xs font-normal">どきょう</rt></ruby>」を<ruby>育成<rt class="text-xs font-normal">いくせい</rt></ruby>する4<ruby>週間<rt class="text-xs font-normal">しゅうかん</rt></ruby><ruby>集中<rt class="text-xs font-normal">しゅうちゅう</rt></ruby>トライアル
+                <ruby>日本人<rt class="text-xs font-normal">にほんじん</rt></ruby>との<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>に<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>を！<br class="sm:hidden">「<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>す<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>」を<ruby>育成<rt class="text-xs font-normal">いくせい</rt></ruby>する4<ruby>週間<rt class="text-xs font-normal">しゅうかん</rt></ruby><ruby>集中<rt class="text-xs font-normal">しゅうちゅう</rt></ruby>トライアル
             </p>
         </section>
 
@@ -83,7 +108,8 @@
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 px-4">
                 
                 <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-red-400 transform transition duration-300 hover:scale-[1.02]">
-                    <h4 class="text-2xl font-semibold text-red-700 mb-4">🇯🇵 <ruby>現状<rt class="text-xs font-normal">げんじょう</rt></ruby>の<ruby>課題<rt class="text-xs font-normal">かだい</rt></ruby>：<br><ruby>知識<rt class="text-xs font-normal">ちしき</rt></ruby>があっても、<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>に<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>が<ruby>持<rt class="text-xs font-normal">も</rt></ruby>てない</h4>
+                    <!-- 1. 🇯🇵 を削除 -->
+                    <h4 class="text-2xl font-semibold text-red-700 mb-4"><ruby>現状<rt class="text-xs font-normal">げんじょう</rt></ruby>の<ruby>課題<rt class="text-xs font-normal">かだい</rt></ruby>：<br><ruby>知識<rt class="text-xs font-normal">ちしき</rt></ruby>があっても、<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>に<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>が<ruby>持<rt class="text-xs font-normal">も</rt></ruby>てない</h4>
                     <p class="text-gray-700 mb-4 max-w-lg mx-auto">
                         このセクションでは、<ruby>多<rt class="text-xs font-normal">おお</rt></ruby>くの<ruby>技能実習生<rt class="text-xs font-normal">ぎのうじっしゅうせい</rt></ruby>が<ruby>直面<rt class="text-xs font-normal">ちょくめん</rt></ruby>する<ruby>共通<rt class="text-xs font-normal">きょうつう</rt></ruby>の<ruby>悩<rt class="text-xs font-normal">なや</rt></ruby>みを<ruby>探<rt class="text-xs font-normal">さが</rt></ruby>ります。N5レベルの<ruby>知識<rt class="text-xs font-normal">ちしき</rt></ruby>はあっても、<ruby>実際<rt class="text-xs font-normal">じっさい</rt></ruby>の<ruby>現場<rt class="text-xs font-normal">げんば</rt></ruby>でのコミュニケーションには<ruby>大<rt class="text-xs font-normal">おお</rt></ruby>きな<ruby>壁<rt class="text-xs font-normal">かべ</rt></ruby>が<ruby>存在<rt class="text-xs font-normal">そんざい</rt></ruby>します。
                     </p>
@@ -92,7 +118,8 @@
                             <span class="text-red-500 font-bold text-xl mr-3">✕</span>
                             <div>
                                 <h5 class="font-semibold text-gray-800"><ruby>知識<rt class="text-xs font-normal">ちしき</rt></ruby>と<ruby>実践<rt class="text-xs font-normal">じっせん</rt></ruby>のギャップ</h5>
-                                <p class="text-gray-600">N5の<ruby>文法<rt class="text-xs font-normal">ぶんぽう</rt></ruby>は<ruby>知<rt class="text-xs font-normal">し</rt></ruby>っていても、**「<ruby>実践的<rt class="text-xs font-normal">じっせんてき</rt></ruby>な<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>」**に<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>がない<ruby>方<rt class="text-xs font-normal">かた</rt></ruby>が<ruby>多<rt class="text-xs font-normal">おお</rt></ruby>いのが<ruby>現状<rt class="text-xs font-normal">げんじょう</rt></ruby>です。</p>
+                                <!-- 2. **の削除 -->
+                                <p class="text-gray-600">N5の<ruby>文法<rt class="text-xs font-normal">ぶんぽう</rt></ruby>は<ruby>知<rt class="text-xs font-normal">し</rt></ruby>っていても、「<ruby>実践的<rt class="text-xs font-normal">じっせんてき</rt></ruby>な<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>」に<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>がない<ruby>方<rt class="text-xs font-normal">かた</rt></ruby>が<ruby>多<rt class="text-xs font-normal">おお</rt></ruby>いのが<ruby>現状<rt class="text-xs font-normal">げんじょう</rt></ruby>です。</p>
                             </div>
                         </li>
                         <li class="flex items-start">
@@ -106,7 +133,8 @@
                 </div>
                 
                 <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-blue-400 transform transition duration-300 hover:scale-[1.02]">
-                    <h4 class="text-2xl font-semibold text-blue-700 mb-4">🎯 <ruby>本講座<rt class="text-xs font-normal">ほんこうざ</rt></ruby>の<ruby>目的<rt class="text-xs font-normal">もくてき</rt></ruby>とゴール：<br>「<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>す<ruby>度胸<rt class="text-xs font-normal">どきょう</rt></ruby>」をつけ、<ruby>即戦力<rt class="text-xs font-normal">そくせんりょく</rt></ruby>に！</h4>
+                    <!-- 4. 「話す度胸」に修正 -->
+                    <h4 class="text-2xl font-semibold text-blue-700 mb-4">🎯 <ruby>本講座<rt class="text-xs font-normal">ほんこうざ</rt></ruby>の<ruby>目的<rt class="text-xs font-normal">もくてき</rt></ruby>とゴール：<br>「<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>す<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>」をつけ、<ruby>即戦力<rt class="text-xs font-normal">そくせんりょく</rt></ruby>に！</h4>
                     <p class="text-gray-700 mb-4 max-w-lg mx-auto">
                         <ruby>本<rt class="text-xs font-normal">ほん</rt></ruby>プログラムは、<ruby>単<rt class="text-xs font-normal">たん</rt></ruby>なる<ruby>知識<rt class="text-xs font-normal">ちしき</rt></ruby>の<ruby>詰<rt class="text-xs font-normal">つ</rt></ruby>め<ruby>込<rt class="text-xs font-normal">こ</rt></ruby>みではありません。<ruby>現場<rt class="text-xs font-normal">げんば</rt></ruby>で<ruby>即座<rt class="text-xs font-normal">そくざ</rt></ruby>に<ruby>役立<rt class="text-xs font-normal">やくだ</rt></ruby>つ「<ruby>使<rt class="text-xs font-normal">つか</rt></ruby>えるスキル」と「<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>」を<ruby>育成<rt class="text-xs font-normal">いくせい</rt></ruby>することに<ruby>特化<rt class="text-xs font-normal">とっか</rt></ruby>しています。
                     </p>
@@ -114,15 +142,18 @@
                         <li class="flex items-start">
                             <span class="text-blue-500 font-bold text-xl mr-3">✅</span>
                             <div>
-                                <h5 class="font-semibold text-gray-800"><ruby>核心的<rt class="text-xs font-normal">かくしんてき</rt></ruby>な<ruby>目標<rt class="text-xs font-normal">もくひょう</rt></ruby>：ビビらない<ruby>度胸<rt class="text-xs font-normal">どきょう</rt></ruby></h5>
-                                <p class="text-gray-600">「<ruby>日本<rt class="text-xs font-normal">にほん</rt></ruby><ruby>入国後<rt class="text-xs font-normal">にゅうこくご</rt></ruby>、<ruby>日本人<rt class="text-xs font-normal">にほんじん</rt></ruby>と<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>するのに**ビビらない<ruby>度胸<rt class="text-xs font-normal">どきょう</rt></ruby>**をつける」ことを<ruby>最重要視<rt class="text-xs font-normal">さいじゅうようし</rt></ruby>します。</p>
+                                <!-- 4. 「臆さない姿勢の獲得」に修正 -->
+                                <h5 class="font-semibold text-gray-800"><ruby>核心的<rt class="text-xs font-normal">かくしんてき</rt></ruby>な<ruby>目標<rt class="text-xs font-normal">もくひょう</rt></ruby>：<ruby>臆<rt class="text-xs font-normal">おく</rt></ruby>さない<ruby>姿勢<rt class="text-xs font-normal">しせい</rt></ruby>の<ruby>獲得<rt class="text-xs font-normal">かくとく</rt></ruby></h5>
+                                <!-- 4. 「臆さない姿勢」に修正 (と同時に ** を削除) -->
+                                <p class="text-gray-600">「<ruby>日本<rt class="text-xs font-normal">にほん</rt></ruby><ruby>入国後<rt class="text-xs font-normal">にゅうこくご</rt></ruby>、<ruby>日本人<rt class="text-xs font-normal">にほんじん</rt></ruby>と<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>するのに<ruby>臆<rt class="text-xs font-normal">おく</rt></ruby>さない<ruby>姿勢<rt class="text-xs font-normal">しせい</rt></ruby>をつける」ことを<ruby>最重要視<rt class="text-xs font-normal">さいじゅうようし</rt></ruby>します。</p>
                             </div>
                         </li>
                         <li class="flex items-start">
                             <span class="text-blue-500 font-bold text-xl mr-3">✅</span>
                             <div>
                                 <h5 class="font-semibold text-gray-800"><ruby>緊急<rt class="text-xs font-normal">きんきゅう</rt></ruby><ruby>対応力<rt class="text-xs font-normal">たいおうりょく</rt></ruby>の<ruby>獲得<rt class="text-xs font-normal">かくとく</rt></ruby></h5>
-                                <p class="text-gray-600"><ruby>体調不良<rt class="text-xs font-normal">たいちょうふりょう</rt></ruby>や<ruby>製品<rt class="text-xs font-normal">せいひん</rt></ruby><ruby>不良<rt class="text-xs font-normal">ふりょう</rt></ruby>など、**「トラブル<ruby>時<rt class="text-xs font-normal">じ</rt></ruby>」**に<ruby>必要<rt class="text-xs font-normal">ひつよう</rt></ruby>な<ruby>報告<rt class="text-xs font-normal">ほうこく</rt></ruby>・<ruby>相談<rt class="text-xs font-normal">そうだん</rt></ruby>ができるスキルを<ruby>身<rt class="text-xs font-normal">み</rt></ruby>につけます。</p>
+                                <!-- 2. **の削除 -->
+                                <p class="text-gray-600"><ruby>体調不良<rt class="text-xs font-normal">たいちょうふりょう</rt></ruby>や<ruby>製品<rt class="text-xs font-normal">せいひん</rt></ruby><ruby>不良<rt class="text-xs font-normal">ふりょう</rt></ruby>など、「トラブル<ruby>時<rt class="text-xs font-normal">じ</rt></ruby>」に<ruby>必要<rt class="text-xs font-normal">ひつよう</rt></ruby>な<ruby>報告<rt class="text-xs font-normal">ほうこく</rt></ruby>・<ruby>相談<rt class="text-xs font-normal">そうだん</rt></ruby>ができるスキルを<ruby>身<rt class="text-xs font-normal">み</rt></ruby>につけます。</p>
                             </div>
                         </li>
                         <li class="flex items-start">
@@ -195,7 +226,8 @@
                             <div class="absolute left-0 top-1.5 w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold z-10 text-sm">1<ruby>週<rt class="text-xs font-normal">しゅう</rt></ruby></div>
                             <div class="ml-16 p-6 bg-blue-50 rounded-lg shadow-md border border-blue-200 transform hover:shadow-lg transition duration-300">
                                 <h5 class="font-bold text-lg text-blue-800 mb-2"><ruby>第<rt class="text-xs font-normal">だい</rt></ruby>1<ruby>週<rt class="text-xs font-normal">しゅう</rt></ruby>：<ruby>日常会話<rt class="text-xs font-normal">にちじょうかいわ</rt></ruby>の<ruby>基礎固<rt class="text-xs font-normal">きそがため</rt></ruby>め</h5>
-                                <p class="text-gray-700"><ruby>自己紹介<rt class="text-xs font-normal">じこしょうかい</rt></ruby>、<ruby>挨拶<rt class="text-xs font-normal">あいさつ</rt></ruby>、<ruby>家族<rt class="text-xs font-normal">かぞく</rt></ruby>のこと、インドネシアのことなど、「<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>すこと」そのものに<ruby>慣<rt class="text-xs font-normal">な</rt></ruby>れることを<ruby>目指<rt class="text-xs font-normal">めざ</rt></ruby>します。</p>
+                                <!-- 3. インドネシア -> 母国 に修正 -->
+                                <p class="text-gray-700"><ruby>自己紹介<rt class="text-xs font-normal">じこしょうかい</rt></ruby>、<ruby>挨拶<rt class="text-xs font-normal">あいさつ</rt></ruby>、<ruby>家族<rt class="text-xs font-normal">かぞく</rt></ruby>のこと、<ruby>母国<rt class="text-xs font-normal">ぼこく</rt></ruby>のことなど、「<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>すこと」そのものに<ruby>慣<rt class="text-xs font-normal">な</rt></ruby>れることを<ruby>目指<rt class="text-xs font-normal">めざ</rt></ruby>します。</p>
                                 <p class="font-semibold text-blue-600 mt-2"><ruby>学習<rt class="text-xs font-normal">がくしゅう</rt></ruby><ruby>効果<rt class="text-xs font-normal">こうか</rt></ruby>：「<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>すことに<ruby>慣<rt class="text-xs font-normal">な</rt></ruby>れる」</p>
                             </div>
                         </div>
@@ -211,7 +243,8 @@
                             <div class="absolute left-0 top-1.5 w-10 h-10 bg-blue-600 rounded-full text-white flex items-center justify-center font-bold z-10 text-sm">3<ruby>週<rt class="text-xs font-normal">しゅう</rt></ruby></div>
                             <div class="ml-16 p-6 bg-red-50 rounded-lg shadow-md border border-red-300 transform hover:shadow-lg transition duration-300">
                                 <h5 class="font-bold text-lg text-red-700 mb-2"><ruby>第<rt class="text-xs font-normal">だい</rt></ruby>3<ruby>週<rt class="text-xs font-normal">しゅう</rt></ruby>：<ruby>職場<rt class="text-xs font-normal">しょくば</rt></ruby>でのトラブル<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>【<ruby>最重要<rt class="text-xs font-normal">さいじゅうよう</rt></ruby>】</h5>
-                                <p class="text-gray-700"><ruby>体調不良<rt class="text-xs font-normal">たいちょうふりょう</rt></ruby>の<ruby>報告<rt class="text-xs font-normal">ほうこく</rt></ruby>、<ruby>製品<rt class="text-xs font-normal">せいひん</rt></ruby><ruby>不良<rt class="text-xs font-normal">ふりょう</rt></ruby>や<ruby>機械故障<rt class="text-xs font-normal">きかいこしょう</rt></ruby>の<ruby>報告<rt class="text-xs font-normal">ほうこく</rt></ruby>、<ruby>遅刻<rt class="text-xs font-normal">ちこく</rt></ruby><ruby>連絡<rt class="text-xs font-normal">れんらく</rt></ruby>など、<ruby>緊急時<rt class="text-xs font-normal">きんきゅうじ</rt></ruby>に<ruby>必要<rt class="text-xs font-normal">ひつよう</rt></ruby>な<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>を<ruby>集中<rt class="text-xs font-normal">しゅうちゅう</rt></ruby><ruby>練習<rt class="text-xs font-normal">れんしゅう</rt></ruby>します。</p>
+                                <!-- 2. **の削除 -->
+                                <p class="text-gray-700"><ruby>体調不良<rt class="text-xs font-normal">たいちょうふりょう</rt></ruby>の<ruby>報告<rt class="text-xs font-normal">ほうこく</rt></ruby>、<ruby>製品<rt class="text-xs font-normal">せいひん</rt></ruby><ruby>不良<rt class="text-xs font-normal">ふりょう</rt></ruby>や<ruby>機械故障<rt class="text-xs font-normal">きかいこしょう</rt></ruby>の<ruby>報告<rt class="text-xs font-normal">ほうこく</rt></ruby>、<ruby>遅刻<rt class="text-xs font-normal">ちこく</rt></ruby><ruby>連絡<rt class="text-xs font-normal">れんらく</rt></ruby>など、「トラブル<ruby>時<rt class="text-xs font-normal">じ</rt></ruby>」に<ruby>必要<rt class="text-xs font-normal">ひつよう</rt></ruby>な<ruby>会話<rt class="text-xs font-normal">かいわ</rt></ruby>を<ruby>集中<rt class="text-xs font-normal">しゅうちゅう</rt></ruby><ruby>練習<rt class="text-xs font-normal">れんしゅう</rt></ruby>します。</p>
                                 <p class="font-semibold text-red-600 mt-2"><ruby>学習<rt class="text-xs font-normal">がくしゅう</rt></ruby><ruby>効果<rt class="text-xs font-normal">こうか</rt></ruby>：「<ruby>緊急時<rt class="text-xs font-normal">きんきゅうじ</rt></ruby>の<ruby>対応力<rt class="text-xs font-normal">たいおうりょく</rt></ruby>」</p>
                             </div>
                         </div>
@@ -246,7 +279,8 @@
                         </div>
                         <div class="p-4 bg-green-100 rounded-lg shadow-inner">
                             <h5 class="font-semibold text-lg text-green-800">40-60<ruby>分<rt class="text-xs font-normal">ふん</rt></ruby>: <ruby>発表<rt class="text-xs font-normal">はっぴょう</rt></ruby>＆フィードバック</h5>
-                            <p class="text-sm text-gray-600">「<ruby>人前<rt class="text-xs font-normal">ひとまえ</rt></ruby>で<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>す<ruby>度胸<rt class="text-xs font-normal">どきょう</rt></ruby>」の<ruby>育成<rt class="text-xs font-normal">いくせい</rt></ruby>を<ruby>行<rt class="text-xs font-normal">おこな</rt></ruby>います。</p>
+                            <!-- 4. 「話す自信」に修正 -->
+                            <p class="text-sm text-gray-600">「<ruby>人前<rt class="text-xs font-normal">ひとまえ</rt></ruby>で<ruby>話<rt class="text-xs font-normal">はな</rt></ruby>す<ruby>自信<rt class="text-xs font-normal">じしん</rt></ruby>」の<ruby>育成<rt class="text-xs font-normal">いくせい</rt></ruby>を<ruby>行<rt class="text-xs font-normal">おこな</rt></ruby>います。</p>
                         </div>
                     </div>
                 </div>
@@ -305,12 +339,8 @@
                             <span class="text-green-500 mr-2">✔</span> <ruby>導入前後<rt class="text-xs font-normal">どうにゅうぜんご</rt></ruby>の<ruby>効果測定<rt class="text-xs font-normal">こうかそくてい</rt></ruby>テスト<ruby>付<rt class="text-xs font-normal">つ</rt></ruby>き
                         </li>
                     </ul>
-                    <!-- 変更点: Formspreeに対応させるため、formタグで囲み、ボタンをsubmitに変更 -->
-                    <form action="https://formspree.io/f/mldolzwl" method="POST">
-                        <!-- トライアルプランの識別情報や連絡先などを隠しフィールドで送ることも可能だが、今回はUI変更のみに留める -->
-                        <input type="hidden" name="プラン" value="1ヶ月トライアル">
-                        <input type="submit" value="トライアルに申し込む" class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white py-3 rounded-lg font-semibold text-lg shadow-lg transition duration-300 transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-blue-300 cursor-pointer">
-                    </form>
+                    <!-- 変更点: Formspreeによる直接送信から、モーダル表示ボタンに変更 -->
+                    <button id="openFormModalBtn" type="button" class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white py-3 rounded-lg font-semibold text-lg shadow-lg transition duration-300 transform hover:scale-[1.01] focus:outline-none focus:ring-4 focus:ring-blue-300 cursor-pointer">トライアルに<ruby>申<rt class="text-xs font-normal">もうし</rt></ruby>し<ruby>込<rt class="text-xs font-normal">こ</rt></ruby>む</button>
                 </div>
             </div>
             
@@ -408,20 +438,98 @@
         <p class="text-sm text-gray-400 mt-2">© 2025 [<ruby>提案者名<rt class="text-xs font-normal">ていあんしゃめい</rt></ruby>]. All rights reserved.</p>
     </footer>
 
+    <!-- 1. 申込フォームモーダル (Main Form Modal) -->
+    <div id="formModalOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <h5 class="text-xl font-bold text-blue-700 mb-4"><ruby>トライアル申込<rt class="text-xs font-normal">もうしこみ</rt></ruby>フォーム</h5>
+            <form id="trialForm" action="https://formspree.io/f/mldolzwl" method="POST">
+                
+                <input type="hidden" name="プラン" value="1ヶ月トライアル - サイト内申込">
+                
+                <div class="mb-4">
+                    <label for="companyName" class="block text-sm font-medium text-gray-700"><ruby>会社名<rt class="text-xs font-normal">かいしゃめい</rt></ruby> / <ruby>団体名<rt class="text-xs font-normal">だんたいめい</rt></ruby> (<span class="text-red-500">必須</span>)</label>
+                    <input type="text" id="companyName" name="会社名/団体名" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+                
+                <div class="mb-4">
+                    <label for="nationality" class="block text-sm font-medium text-gray-700"><ruby>国籍<rt class="text-xs font-normal">こくせき</rt></ruby> (<span class="text-red-500">必須</span>)</label>
+                    <input type="text" id="nationality" name="国籍" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+
+                <div class="mb-4">
+                    <label for="picName" class="block text-sm font-medium text-gray-700"><ruby>ご担当者名<rt class="text-xs font-normal">ごたんとうしゃめい</rt></ruby> (<span class="text-red-500">必須</span>)</label>
+                    <input type="text" id="picName" name="担当者名" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+
+                <div class="mb-6">
+                    <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス (<span class="text-red-500">必須</span>)</label>
+                    <input type="email" id="email" name="メールアドレス" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 border">
+                </div>
+
+                <!-- 補足の追加 -->
+                <p class="text-xs text-red-600 mb-4">
+                    ※メール<ruby>受領後<rt class="text-xs font-normal">じゅりょうご</rt></ruby>にご<ruby>連絡<rt class="text-xs font-normal">れんらく</rt></ruby>させていただきます。
+                </p>
+
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="closeFormModalBtn" class="py-2 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition duration-150">
+                        <ruby>閉<rt class="text-xs font-normal">と</rt></ruby>じる
+                    </button>
+                    <!-- 確認モーダルを表示するためのボタン -->
+                    <button type="button" id="showConfirmModalBtn" class="py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition duration-150 shadow-md">
+                        <ruby>送信<rt class="text-xs font-normal">そうしん</rt></ruby>ボタン
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. 確認モーダル (Confirmation Modal) -->
+    <div id="confirmModalOverlay" class="modal-overlay">
+        <div class="modal-content text-center">
+            <h5 class="text-xl font-bold text-gray-800 mb-6">
+                <ruby>本当<rt class="text-xs font-normal">ほんとう</rt></ruby>によろしいですか？
+            </h5>
+            <p class="text-gray-700 mb-8">
+                ご<ruby>入力<rt class="text-xs font-normal">にゅうりょく</rt></ruby><ruby>内容<rt class="text-xs font-normal">ないよう</rt></ruby>でトライアルに<ruby>申<rt class="text-xs font-normal">もう</rt></ruby>し<ruby>込<rt class="text-xs font-normal">こ</rt></ruby>みます。
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button type="button" id="cancelConfirmBtn" class="py-2 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition duration-150">
+                    <ruby>キャンセル<rt class="text-xs font-normal">きゃんせる</rt></ruby>
+                </button>
+                <button type="button" id="submitFormBtn" class="py-2 px-4 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition duration-150 shadow-md">
+                    <ruby>申<rt class="text-xs font-normal">もう</rt></ruby>し<ruby>込<rt class="text-xs font-normal">こ</rt></ruby>む
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 送信完了モーダル (Success Modal) -->
+    <div id="successModalOverlay" class="modal-overlay">
+        <div class="modal-content text-center">
+            <h5 class="text-2xl font-bold text-green-600 mb-4">
+                <ruby>申込<rt class="text-xs font-normal">もうしこみ</rt></ruby><ruby>完了<rt class="text-xs font-normal">かんりょう</rt></ruby>しました！
+            </h5>
+            <p class="text-gray-700 mb-8">
+                ご<ruby>登録<rt class="text-xs font-normal">とうろく</rt></ruby>いただいたメールアドレスに、<br><ruby>後<rt class="text-xs font-normal">あと</rt></ruby>ほどご<ruby>連絡<rt class="text-xs font-normal">れんらく</rt></ruby>させていただきます。
+            </p>
+            <button type="button" id="closeSuccessModalBtn" class="py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition duration-150 shadow-md">
+                <ruby>閉<rt class="text-xs font-normal">と</rt></ruby>じる
+            </button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- Tab Switching Logic ---
+            // --- Tab Switching Logic (Original code kept) ---
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabPanels = document.querySelectorAll('.tab-panel');
 
-            // Function to handle tab activation
             const activateTab = (targetTab) => {
-                // Deactivate all buttons and panels
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabPanels.forEach(panel => panel.classList.remove('active'));
 
-                // Activate clicked button and target panel
                 const targetButton = document.querySelector(`.tab-btn[data-tab="${targetTab}"]`);
                 const targetPanel = document.getElementById(`tab-${targetTab}`);
                 
@@ -429,19 +537,12 @@
                     targetButton.classList.add('active');
                     targetPanel.classList.add('active');
                     
-                    // Trigger chart re-render if it's the lesson tab
-                    if (targetTab === 'lesson') {
-                        // Chart.js doesn't strictly need a redraw on tab switch if properly initiated
-                        // but sometimes helps ensure responsiveness
-                        if (window.lessonDoughnutChart) {
-                             // This is a minimal way to ensure Chart.js re-initializes or re-sizes correctly if needed
-                            window.lessonDoughnutChart.resize(); 
-                        }
+                    if (window.lessonDoughnutChart) {
+                        window.lessonDoughnutChart.resize(); 
                     }
                 }
             };
             
-            // Set up click listeners for all tab buttons
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const targetTab = button.getAttribute('data-tab');
@@ -450,12 +551,11 @@
             });
 
 
-            // --- Chart.js Doughnut Chart Logic ---
+            // --- Chart.js Doughnut Chart Logic (Original code kept) ---
             const lessonChartCanvas = document.getElementById('lessonChart');
             if (lessonChartCanvas) {
                 const ctx = lessonChartCanvas.getContext('2d');
                 
-                // Initialize the chart once and store it globally for potential access (e.g., resize)
                 window.lessonDoughnutChart = new Chart(ctx, {
                     type: 'doughnut',
                     data: {
@@ -468,9 +568,9 @@
                             label: '60分の授業構成',
                             data: [20, 20, 20],
                             backgroundColor: [
-                                'rgb(156, 163, 175, 0.7)', // gray-400 for input (subtle)
-                                'rgb(59, 130, 246, 0.8)', // blue-500 for core output
-                                'rgb(16, 185, 129, 0.8)'  // green-500 for presentation/feedback (crucial output)
+                                'rgb(156, 163, 175, 0.7)', 
+                                'rgb(59, 130, 246, 0.8)', 
+                                'rgb(16, 185, 129, 0.8)'  
                             ],
                             borderColor: [
                                 'rgb(75, 85, 99)',
@@ -483,7 +583,7 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
-                        cutout: '75%', /* Makes it a thin doughnut chart */
+                        cutout: '75%', 
                         plugins: {
                             legend: {
                                 position: 'bottom',
@@ -499,11 +599,8 @@
                                     label: function(context) {
                                         let label = context.label || '';
                                         if (label) {
-                                            // Extract minute value from label
                                             const match = label.match(/\((\d+)分\)/);
                                             const minutes = match ? match[1] : context.parsed;
-                                            
-                                            // Clean up label for tooltip
                                             label = label.split('(')[0].trim(); 
                                             return `${label}: ${minutes}分`;
                                         }
@@ -516,14 +613,13 @@
                 });
             }
 
-            // --- Smooth Scroll for Navigation ---
+            // --- Smooth Scroll for Navigation (Original code kept) ---
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
                     if(targetElement) {
-                        // Adjust scroll to account for fixed header (16 + padding/margin, roughly 90px)
                         const offset = 90; 
                         const elementPosition = targetElement.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - offset;
@@ -534,6 +630,113 @@
                         });
                     }
                 });
+            });
+
+
+            // --- Modal/Form Submission Logic (New implementation) ---
+            const formModalOverlay = document.getElementById('formModalOverlay');
+            const confirmModalOverlay = document.getElementById('confirmModalOverlay');
+            const successModalOverlay = document.getElementById('successModalOverlay');
+            const openFormModalBtn = document.getElementById('openFormModalBtn');
+            const closeFormModalBtn = document.getElementById('closeFormModalBtn');
+            const showConfirmModalBtn = document.getElementById('showConfirmModalBtn');
+            const cancelConfirmBtn = document.getElementById('cancelConfirmBtn');
+            const submitFormBtn = document.getElementById('submitFormBtn');
+            const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+            const trialForm = document.getElementById('trialForm');
+            const formActionUrl = trialForm.action; // Formspree URL
+
+            // 1. フォームモーダルを開く
+            openFormModalBtn.addEventListener('click', () => {
+                formModalOverlay.classList.add('show');
+            });
+
+            // 2. フォームモーダルを閉じる
+            closeFormModalBtn.addEventListener('click', () => {
+                formModalOverlay.classList.remove('show');
+            });
+            
+            // モーダル外クリックで閉じる (Optional, but good UX)
+            formModalOverlay.addEventListener('click', (e) => {
+                if (e.target.id === 'formModalOverlay') {
+                    formModalOverlay.classList.remove('show');
+                }
+            });
+
+
+            // 3. 送信ボタン (フォームモーダル内) -> 確認モーダルを表示
+            showConfirmModalBtn.addEventListener('click', () => {
+                // 必須項目のバリデーションチェック
+                if (!trialForm.checkValidity()) {
+                    // ブラウザ標準のバリデーションメッセージを表示
+                    trialForm.reportValidity();
+                    return;
+                }
+                // フォームモーダルを非表示にし、確認モーダルを表示
+                formModalOverlay.classList.remove('show');
+                confirmModalOverlay.classList.add('show');
+            });
+
+            // 4. 確認モーダルからキャンセル
+            cancelConfirmBtn.addEventListener('click', () => {
+                // 確認モーダルを非表示にし、フォームモーダルに戻る
+                confirmModalOverlay.classList.remove('show');
+                formModalOverlay.classList.add('show');
+            });
+            
+            // 5. 最終送信 (fetch APIを使用)
+            submitFormBtn.addEventListener('click', async () => {
+                
+                confirmModalOverlay.classList.remove('show'); // 確認モーダルを閉じる
+
+                // フォームデータを取得
+                const formData = new FormData(trialForm);
+                const data = {};
+                formData.forEach((value, key) => data[key] = value);
+
+                // ローディングインジケータを出す場合はここに実装
+
+                try {
+                    const response = await fetch(formActionUrl, {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // 成功モーダルを表示
+                        successModalOverlay.classList.add('show');
+                        trialForm.reset(); // フォームをリセット
+                    } else {
+                        // エラーメッセージ（Formspreeからのレスポンスを解析）
+                        let errorText = "申込に失敗しました。時間をおいて再度お試しください。";
+                        try {
+                            const errorData = await response.json();
+                            if (errorData.error) {
+                                errorText = `申込に失敗しました: ${errorData.error}`;
+                            }
+                        } catch (e) {
+                            // JSONパースエラーは無視
+                        }
+                        console.error("Formspree Submission Error:", errorText);
+                        // alert()の代わりにconsole.errorを使用
+                        // alert(`エラーが発生しました: ${errorText}`); 
+                        // UXのためにエラー発生時は一旦フォームモーダルに戻るなどの対応が必要ですが、今回は指示に従いシンプルに
+                        confirmModalOverlay.classList.add('show'); // 便宜的に確認画面を再表示
+                    }
+                } catch (error) {
+                    console.error('Submission failed:', error);
+                    // alert()の代わりにconsole.errorを使用
+                    // alert("ネットワークエラーにより申込に失敗しました。接続を確認してください。");
+                    confirmModalOverlay.classList.add('show'); // 便宜的に確認画面を再表示
+                }
+            });
+
+            // 6. 成功モーダルを閉じる
+            closeSuccessModalBtn.addEventListener('click', () => {
+                successModalOverlay.classList.remove('show');
             });
         });
     </script>
